@@ -41,7 +41,7 @@ function endpointApiRequest(projectId = 'Replace Project Id') {
   var idToken = user.getAuthResponse().id_token;
   
   // Replace Cloud Endpoint URL with Path below
-  var endpoint = `https://<projectId>.appspot.com/_ah/api/email/v1/get/email`;
+  var endpoint = `https://Replace Project Id.appspot.com/_ah/api/email/v1/get/email`;
 
   var xhr = new XMLHttpRequest();
     console.log(xhr);
