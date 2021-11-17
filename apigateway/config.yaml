@@ -1,0 +1,28 @@
+# openapi2-appengine.yaml
+swagger: '2.0'
+info:
+  title: testing
+  description: API Gateway
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /getUser:
+    get:
+      summary: Greeting a user
+      operationId: getUser
+      x-google-backend:
+        address: "Add AppEngine URL here"
+        jwt_audience: "Replace Client ID"
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+      #Add API Security below
+      
+      
+
+#Add Security Defination below
