@@ -7,17 +7,17 @@ from endpoints import remote
 # [END endpoints_email_api_imports]
 class EmailRequest(messages.Message):
     message = messages.StringField(1)
-    
+
 class EmailResponse(messages.Message):
     message = messages.StringField(1)
-    
+
 #Add Endpoint API below
 
 class EmailApi(remote.Service):
-    
+
     #Add Endpoint Method Path below
-    
-    
+
+
     def get_user_email(self, request):
         user = endpoints.get_current_user()
         headers = {
@@ -26,7 +26,7 @@ class EmailApi(remote.Service):
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Max-Age': '3600'
         }
-         
+
         # If there's no user defined, the request was unauthenticated, so we
         # raise 401 Unauthorized.
         if not user:
