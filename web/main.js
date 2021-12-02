@@ -63,7 +63,7 @@ function apiGatewayRequest(projectId = 'Replace Project Id') {
   var idToken = user.getAuthResponse().id_token;
   
   //Replace API Gateway host url below, keep https:// and getUser as is.
-  var endpoint = `https://ca-gateway-6drf0zzu.uc.gateway.dev/getUser`;  
+  var endpoint = `https://<api_gateway_host>/getUser`;  
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', endpoint + '?access_token=' + encodeURIComponent(idToken));
