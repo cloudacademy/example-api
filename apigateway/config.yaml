@@ -22,7 +22,7 @@ paths:
           schema:
             type: string
       #Add API Security below
-      
-      
+
+
 
 #Add Security Definition below
