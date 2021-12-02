@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -8,12 +8,10 @@ CORS(app)
 @app.route("/", methods=["GET"])
 def hello():
 
-    headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Max-Age": "3600",
-    }
-    print(headers)
-
-    return "Welcome CA"
+    resp = make_response("Welcome CA")
+    resp.headers["Access-Control-Allow-Credentials"] = "true"
+    resp.headers["Access-Control-Allow-Origin"] = request.origin
+    resp.headers["Access-Control-Allow-Methods"] = "GET"
+    resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    resp.headers["Access-Control-Max-Age"] = "3600"
+    return resp

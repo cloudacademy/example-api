@@ -10,6 +10,15 @@ produces:
   - application/json
 paths:
   /getUser:
+    options:
+      summary: Preflight requests
+      operationId: getUser-CORS
+      x-google-backend:
+        address: "Add AppEngine URL here"
+        jwt_audience: "Replace Client ID"
+      responses:
+        '200':
+          description: A successful response
     get:
       summary: Greeting a user
       operationId: getUser
