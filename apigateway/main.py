@@ -5,7 +5,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET","OPTIONS"])
 def hello():
 
     resp = make_response("Welcome CA")
