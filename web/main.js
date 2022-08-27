@@ -12,7 +12,8 @@ function loadAuthClient () {
 function initGoogleAuth (clientId = 'Replace Client ID') {
   gapi.auth2.init({
     client_id: clientId,
-    scope: 'https://www.googleapis.com/auth/userinfo.email'
+    scope: 'https://www.googleapis.com/auth/userinfo.email',
+    plugin_name: 'lab'
   }).then(() => {
     document.getElementById('sign-in-btn').disabled = false;
   }).catch(err => {
