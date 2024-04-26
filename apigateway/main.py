@@ -9,7 +9,7 @@ CORS(app)
 def hello():
 
     resp = make_response("Welcome CA")
-    resp.headers["Access-Control-Allow-Credentials"] = "true"
+    resp.access_control_allow_credentials = True
     resp.headers["Access-Control-Allow-Origin"] = request.origin
     resp.headers["Access-Control-Allow-Methods"] = "GET"
     resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
