@@ -27,35 +27,12 @@ function signIn () {
   gapi.auth2.getAuthInstance().signIn().then(() => {
     document.getElementById('sign-in-btn').hidden = true;
     document.getElementById('sign-out-btn').hidden = false;
-    document.getElementById('send-endpoint-btn').disabled = false;
     document.getElementById('send-api-btn').disabled = false;
   }).catch(err => {
     console.log(err);
   });
 }
 // [END user_signin]
-
-// [START send_sample_request]
-function endpointApiRequest(projectId = 'Replace Project Id') {
-  
-  var user = gapi.auth2.getAuthInstance().currentUser.get();
-  var idToken = user.getAuthResponse().id_token;
-  
-  // Replace Cloud Endpoint URL with Path below
-  var endpoint = `https://Replace Project Id.appspot.com/_ah/api/email/v1/get/email`;
-
-  var xhr = new XMLHttpRequest();
-    console.log(xhr);
-  xhr.open('GET', endpoint + '?access_token=' + encodeURIComponent(idToken));
-  xhr.withCredentials = true;
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencode');
-  xhr.onreadystatechange = function () {
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      window.alert(xhr.responseText);
-    }
-  };
-  xhr.send();
-}
 
 
 function apiGatewayRequest(projectId = 'Replace Project Id') {
