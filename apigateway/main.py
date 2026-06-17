@@ -7,11 +7,13 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/", methods=["OPTIONS"])
+@app.route("/getUser", methods=["OPTIONS"])
 def preflight():
     # Return a 200 response with CORS headers set for preflight OPTIONS requests
     return _set_cors_headers(make_response())
 
 @app.route("/", methods=["GET"])
+@app.route("/getUser", methods=["GET"])
 def hello():
     # Verify the token from access_token url parameter
     id_info = id_token.verify_oauth2_token(
