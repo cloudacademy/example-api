@@ -1,12 +1,21 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script type="text/javascript" src="main.js"></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    </style>
     <!-- [START load_google_apis] -->
-    <script src="https://apis.google.com/js/platform.js?onload=loadAuthClient" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer onload="loadAuthClient()"></script>
   </head>
   <!-- [END load_google_apis] -->
   <body>
-    <button id='sign-in-btn' onclick="signIn();" disabled>Sign In</button>
+    <div id="google-sign-in"></div>
     <button id='sign-out-btn' onclick="signOut();" hidden>Sign Out</button>
     <button id='send-api-btn' onclick="apiGatewayRequest();" disabled>API Gateway Trigger</button>
   </body>
