@@ -1,5 +1,6 @@
 from flask import Flask, request, make_response
 from flask_cors import CORS
+from google.auth.exceptions import GoogleAuthError
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
@@ -16,11 +17,14 @@ def preflight():
 @app.route("/getUser", methods=["GET"])
 def hello():
     # Verify the token from access_token url parameter
-    id_info = id_token.verify_oauth2_token(
-        request.args.get("access_token"),
-        requests.Request(),
-        "Replace Client ID"
-    )
+    try:
+        id_info = id_token.verify_oauth2_token(
+            request.args.get("access_token"),
+            requests.Request(),
+            "Replace Client ID"
+        )
+    except (GoogleAuthError, ValueError) as err:
+        return _set_cors_headers(make_response(str(err), 401))
 
     # Return a message including the name claim of the token
     resp = make_response(f"Welcome {id_info['name']}")
@@ -29,7 +33,7 @@ def hello():
 def _set_cors_headers(resp):
     resp.access_control_allow_credentials = True
     resp.headers["Access-Control-Allow-Origin"] = request.origin
-    resp.headers["Access-Control-Allow-Methods"] = "GET"
-    resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    resp.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    resp.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
     resp.headers["Access-Control-Max-Age"] = "3600"
     return resp
