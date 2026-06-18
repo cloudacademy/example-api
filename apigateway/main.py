@@ -23,6 +23,9 @@ def hello():
     except (ValueError, json.JSONDecodeError) as err:
         return _set_cors_headers(make_response(str(err), 401))
 
+    if id_info.get("hd") != "gcp.labs.platform.qa.com":
+        return _set_cors_headers(make_response("Unauthorized domain", 403))
+
     # Return a message including the name claim of the token
     resp = make_response(f"Welcome {id_info['name']}")
     return _set_cors_headers(resp)
