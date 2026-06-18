@@ -35,17 +35,18 @@ function handleCredentialResponse (response) {
   document.getElementById('send-api-btn').disabled = false;
 }
 
-function apiGatewayRequest(projectId = 'Replace Project Id') {
+function apiGatewayRequest() {
   if (!idToken) {
     window.alert('Sign in before calling the API.');
     return;
   }
   
-  //Replace API Gateway host url below, keep https:// and getUser as is.
+  // Replace API Gateway host url below, keep https:// and getUser as is.
   var endpoint = `https://<api_gateway_host>/getUser`;  
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', endpoint + '?access_token=' + encodeURIComponent(idToken));
+  xhr.open('GET', endpoint);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + idToken);
 
   xhr.onreadystatechange = function () {
     if (this.readyState === XMLHttpRequest.DONE) {

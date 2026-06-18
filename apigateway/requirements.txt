@@ -1,4 +1,4 @@
-Flask>=3.0,<4.0
-Flask-Cors>=6.0,<7.0
-google-auth>=2.29,<3.0
-gunicorn>=22,<24
+Flask==3.0.3
+Flask-Cors==4.0.1
+google-auth==2.29.0
+gunicorn==22.0.0
