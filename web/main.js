@@ -46,7 +46,6 @@ function apiGatewayRequest(projectId = 'Replace Project Id') {
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', endpoint + '?access_token=' + encodeURIComponent(idToken));
-  xhr.setRequestHeader('Authorization', 'Bearer ' + idToken);
 
   xhr.onreadystatechange = function () {
     if (this.readyState === XMLHttpRequest.DONE) {
